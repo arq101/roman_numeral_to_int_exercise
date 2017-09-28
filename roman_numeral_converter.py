@@ -32,18 +32,22 @@ def roman_numeral_to_int(roman_num_str):
         while i < len(roman_num_str) - 1:
 
             if roman_num_str[i] == 'I':
+                # 'I' preceding 'V' or 'X', becomes subtractive notation,
+                # ie 'I' is subtracted
                 if roman_num_str[i+1] in {'V', 'X'}:
                     result -= ROMAN_SYMBOLS['I']
                 else:
                     result += ROMAN_SYMBOLS['I']
 
             elif roman_num_str[i] == 'X':
+                # 'X' preceding 'L' or 'C', becomes subtractive notation
                 if roman_num_str[i+1] in {'L', 'C'}:
                     result -= ROMAN_SYMBOLS['X']
                 else:
                     result += ROMAN_SYMBOLS['X']
 
             elif roman_num_str[i] == 'C':
+                # 'C' preceding 'D' or 'M', becomes subtractive notation
                 if roman_num_str[i+1] in {'D', 'M'}:
                     result -= ROMAN_SYMBOLS['C']
                 else:
@@ -54,6 +58,6 @@ def roman_numeral_to_int(roman_num_str):
 
             i += 1
 
+        # finally add the last symbol from the numeral string
         result += ROMAN_SYMBOLS[roman_num_str[-1]]
         return result
-
